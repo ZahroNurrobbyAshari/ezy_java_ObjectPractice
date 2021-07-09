@@ -3,48 +3,69 @@ class Barang{
     String nama;
     int hargaSatuan;
     int jumlah;
+    int total;
+    int diskon;
+
+    int hitungHargaTotal(){
+        total = hargaSatuan*jumlah;
+        System.out.println("Total Harga : "+total);
+        return total;
+    }
+    int hitungDiskon(){
+        if(total>100000){
+            diskon = total*10/100;
+            System.out.println("Diskon : "+diskon);
+            return diskon;
+        }else if(total>=50000&&total<=100000){
+            diskon = total*5/100;
+            System.out.println("Diskon : "+diskon);
+            return diskon;
+        }else{
+            diskon=0;
+            System.out.println("Diskon : "+diskon);
+            return diskon;
+        }
+    }
+    int hitungHargaBayar(){
+        int bayar = total-diskon;
+        System.out.println("Bayar : "+bayar);
+        return bayar;
+    }
+
 }
 
 public class App {
-
-    static int hitungHargaTotal(int hargaSatuan,int jumlah){
-        return hargaSatuan*jumlah;
-    }
-
-    static int hitungDiskon(int hargaTotal){
-        if(hargaTotal>100000){
-            return hargaTotal*10/100;
-        }else if(hargaTotal==50000&&hargaTotal<=100000){
-            return hargaTotal*5/100;
-        }else{
-            return 0;
-        }
-    }
-    
-    static int hitungHargaBayar(int hargaTotal , int hargaDiskon){
-        return hargaTotal-hargaDiskon;
-    }
-
-
-
     public static void main(String[] args) throws Exception {
-         Barang buku = new Barang();
-         buku.nama = "Buku";
-         buku.hargaSatuan = 25000;
-         buku.jumlah = 5;
-         
-        int total = hitungHargaTotal(buku.hargaSatuan, buku.jumlah);
-        int diskon = hitungDiskon(total);
-        int bayar = hitungHargaBayar(total, diskon);
 
-        System.out.println("---------------------------------");
-        System.out.println("Nama Barang : "+buku.nama);
-        System.out.println("Total Harga : "+ total);
-        System.out.println("Total Diskon : "+ diskon);
-        System.out.println("Total Bayar : "+ bayar);
-        System.out.println("---------------------------------");
+        Barang pulpen = new Barang();
+        pulpen.nama = "pulpen";
+        pulpen.hargaSatuan = 1000;
+        pulpen.jumlah = 5;
+        System.out.println(pulpen.nama);
+        pulpen.hitungHargaTotal();
+        pulpen.hitungDiskon();
+        pulpen.hitungHargaBayar();
+        System.out.println("------------------------------------------------");
 
+        Barang buku = new Barang();
+        buku.nama = "buku";
+        buku.hargaSatuan = 6000;
+        buku.jumlah = 10;
+        System.out.println(buku.nama);
+        buku.hitungHargaTotal();
+        buku.hitungDiskon();
+        buku.hitungHargaBayar();
+        System.out.println("------------------------------------------------");
 
-         
+        Barang sepatu = new Barang();
+        sepatu.nama = "sepatu";
+        sepatu.hargaSatuan = 100000;
+        sepatu.jumlah = 5;
+        System.out.println(sepatu.nama);
+        sepatu.hitungHargaTotal();
+        sepatu.hitungDiskon();
+        sepatu.hitungHargaBayar();
+        System.out.println("------------------------------------------------");
+
     }
 }
